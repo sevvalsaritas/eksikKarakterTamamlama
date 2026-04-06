@@ -5,8 +5,8 @@ Girdi olarak bazı harfleri `_` ile maskelenmiş cümleler kullanılmış, model
 
 ## Örnek
 
-- **Girdi:** `_u oy_nculara d_ b_ze d_ g_vensinler`
-- **Çıktı:** `Bu oyunculara da bize de güvensinler`
+<img width="1264" height="472" alt="image" src="https://github.com/user-attachments/assets/6a504171-39a4-4cc3-8959-6cf682c8822a" />
+
 
 ---
 
