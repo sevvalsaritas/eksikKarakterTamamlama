@@ -1,77 +1,76 @@
-# 🔤 Missing Character Completion in Turkish with RNN, LSTM and GRU
+# 🔤 Türkçe Eksik Karakter Tamamlama: RNN, LSTM ve GRU
 
-This project focuses on **missing character completion in Turkish text** using recurrent neural network architectures.  
-The main goal is to reconstruct corrupted sentences where some characters are replaced with `_`.
+Bu projede, Türkçe metinlerde eksik bırakılmış karakterlerin derin öğrenme yöntemleri ile tamamlanması amaçlanmıştır.  
+Girdi olarak bazı harfleri `_` ile maskelenmiş cümleler kullanılmış, modelden ise bu cümlelerin doğru hâlini üretmesi beklenmiştir.
 
-Example:
+## Örnek
 
-- **Input:** `_u oy_nculara d_ b_ze d_ g_vensinler`
-- **Output:** `Bu oyunculara da bize de güvensinler`
+- **Girdi:** `_u oy_nculara d_ b_ze d_ g_vensinler`
+- **Çıktı:** `Bu oyunculara da bize de güvensinler`
 
 ---
 
-## 📌 Project Objective
+## 📌 Projenin Amacı
 
-In this study, Turkish sentences are artificially corrupted by masking some characters with `_`, and deep learning models are trained to recover the original text.
+Bu çalışmada, Türkçe cümlelerde eksik bırakılan karakterleri tahmin edebilen bir model geliştirilmiştir.  
+Karakter seviyesinde çalışan farklı tekrarlayan sinir ağı mimarileri karşılaştırılmıştır.
 
-The following architectures are explored:
+Kullanılan mimariler:
 
 - RNN
 - LSTM
 - GRU
-- BiLSTM / BiGRU (improved versions)
+- Geliştirilmiş sürüm olarak çift yönlü yapılar:
+  - BiLSTM
+  - BiGRU
 
 ---
 
-## 🗂 Dataset
+## 🗂 Veri Seti
 
-Dataset source: **GEC-Turk / BOUN dataset**
+Projede **GEC-Turk / BOUN** veri seti temel alınmıştır.  
+Temiz hedef cümleler kullanılarak yapay biçimde bozulmuş giriş cümleleri üretilmiştir.
 
-This dataset contains Turkish sentences and their corrected forms.  
-For this project, the clean target sentences are used to generate synthetic corrupted inputs for the missing character completion task.
+### Uygulanan ön işleme adımları
 
-### Preprocessing steps
-
-- duplicate sentence removal
-- text normalization
-- removing or simplifying noisy characters
-- splitting very long sentences into chunks of up to **10 words**
-- generating corrupted input sentences by replacing some characters with `_`
+- tekrar eden satırların silinmesi
+- metin normalizasyonu
+- gereksiz karakterlerin temizlenmesi
+- çok uzun cümlelerin en fazla **10 kelimelik** parçalara bölünmesi
+- bazı karakterlerin `_` ile değiştirilerek bozuk giriş verisinin oluşturulması
 
 ---
 
-## ⚙️ Methodology
+## ⚙️ Yöntem
 
-The problem is modeled as a **character-level sequence prediction task**.
+Problem, **karakter seviyesinde sıralı tahmin problemi** olarak ele alınmıştır.
 
-### Workflow
+### İş akışı
 
-1. Read clean Turkish sentences
-2. Normalize and clean the text
-3. Remove duplicate lines
-4. Split long sentences into shorter segments
-5. Generate corrupted versions by masking characters
-6. Build character vocabulary
-7. Train recurrent neural network models
-8. Evaluate generated outputs on sample inputs
-
----
-
-## 🧠 Model Architecture
-
-The model consists of:
-
-- **Embedding layer**
-- **Recurrent layer**  
-  - RNN / LSTM / GRU
-  - optionally bidirectional versions
-- **Linear layer** for character prediction
-
-The task is performed at the **character level**, meaning each input character corresponds to one output character.
+1. Temiz Türkçe cümlelerin okunması  
+2. Metinlerin normalize edilmesi  
+3. Tekrarlı satırların kaldırılması  
+4. Uzun cümlelerin parçalara ayrılması  
+5. Eksik karakterli giriş verisinin oluşturulması  
+6. Karakter sözlüğünün oluşturulması  
+7. RNN tabanlı modellerin eğitilmesi  
+8. Örnek cümleler üzerinde tahmin yapılması  
 
 ---
 
-## 🛠 Technologies Used
+## 🧠 Model Mimarisi
+
+Model genel olarak şu katmanlardan oluşmaktadır:
+
+- **Embedding katmanı**
+- **RNN / LSTM / GRU katmanı**
+- **Linear katman** ile karakter tahmini
+
+Bu çalışma karakter seviyesinde yapıldığı için, girişteki her karaktere karşılık çıktı tarafında bir karakter tahmin edilmektedir.
+
+---
+
+## 🛠 Kullanılan Teknolojiler
 
 - Python
 - PyTorch
@@ -80,9 +79,10 @@ The task is performed at the **character level**, meaning each input character c
 
 ---
 
-## 🚀 Running the Project
+## 🚀 Projeyi Çalıştırma
 
-### 1. Clone the repository
+### 1. Repoyu klonlayın
 
 ```bash
 git clone https://github.com/sevvalsaritas/eksikKarakterTamamlama.git
+cd eksikKarakterTamamlama
